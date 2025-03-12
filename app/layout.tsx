@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SessionProviderWrapper from "@/components/SessionProviderWrapper";
 import SessionTimer from "@/components/SessionTimer";
-import UserStatus from "@/components/UserStatus";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +34,6 @@ export default function RootLayout({
         <SessionProviderWrapper>
         <SessionTimer />
         {children}
-        <UserStatus />
         </SessionProviderWrapper>
        
       </body>
