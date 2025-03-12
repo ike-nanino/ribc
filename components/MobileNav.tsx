@@ -72,6 +72,7 @@ const MobileNav = ({ user}: MobileNavProps) => {
                           className={cn({
                             'brightness-[3] invert-0': isActive
                           })}
+                          priority
                         />
                       <p className={cn("text-16 font-semibold text-black-2", { "text-white": isActive })}>
                         {item.label}

@@ -29,12 +29,13 @@ const Footer = ({ type = 'desktop'  }: FooterProps) => {
                 <Image src="/assets/icons/settings.svg" fill alt="settings" />
             </div>
 
-            <div className='hidden md:inline'>
+            {/* <div className='hidden md:inline'>
 
                 <p className="text-14 truncate font-normal text-gray-600">
                     Settings
                 </p>
-            </div>
+            </div> */}
+            
           </div>
           </Link>
 
@@ -44,12 +45,12 @@ const Footer = ({ type = 'desktop'  }: FooterProps) => {
                 <Image src="/assets/icons/logout.svg" fill alt="jsm" />
             </div>
 
-            <div className='hidden md:inline'>
+            {/* <div className='hidden md:inline'>
 
                 <p className="text-14 truncate font-normal text-gray-600">
                     Logout
                 </p>
-            </div>
+            </div> */}
           </div>
 
 
