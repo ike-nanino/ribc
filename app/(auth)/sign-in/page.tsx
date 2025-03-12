@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 import PasskeyModal from "@/components/PasskeyModal";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getSession, signIn } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLocationDot,
-  faQuestion,
   faEyeSlash,
   faEye,
   faLock,
@@ -17,7 +15,17 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
-function SignIn() {
+// Main component wrapper with Suspense
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="text-center p-8">Loading...</div>}>
+      <SignInContent />
+    </Suspense>
+  );
+}
+
+// Inner component that contains the actual form
+function SignInContent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -28,12 +36,10 @@ function SignIn() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const errorType = searchParams?.get("error");
+  const errorType = searchParams.get("error");
 
   // Handle errors from URL parameters
   useEffect(() => {
-    const errorType = searchParams?.get("error");
-
     if (errorType === "2fa-required") {
       setShowPasskeyModal(true);
       setError("Please complete 2FA verification");
@@ -86,58 +92,32 @@ function SignIn() {
   };
 
   const handleTwoFactorSuccess = () => {
-    router.push("/profile"); // Redirect after successful 2FA
+    router.push("/profile");
   };
-
-
-
-
 
   return (
     <main>
       {showPasskeyModal && (
         <PasskeyModal
-          username={username}  // Pass credentials to modal
+          username={username}
           password={password}
           onSuccess={handleTwoFactorSuccess}
           onClose={() => setShowPasskeyModal(false)}
         />
       )}
 
-      {/* <header className="bg-blue-primary h-[88px]">
-        <div className="flex justify-between h-full items-center p-6">
-          <div className="w-[120px] h-[64px] relative">
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+        <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
+          <div className="flex justify-center mb-6">
             <Image
-              src="/assets/images/bmo.png"
-              alt="Logo"
-              fill
-              sizes="120px"
-              className="object-contain object-left"
+              src="/assets/images/osbi.png"
+              alt="Vault Logo"
+              className="h-24 w-auto"
+              width={300}
+              height={100}
               priority
             />
           </div>
-          <div className="flex items-center space-x-10 mr-2">
-            <FontAwesomeIcon icon={faLocationDot} className="text-white" />
-            <FontAwesomeIcon icon={faQuestion} className="text-white" />
-            <p className="text-white">FR</p>
-          </div>
-        </div>
-      </header> */}
-
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-        <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-
-
-        <div className="flex justify-center mb-6">
-          <Image
-            src="/assets/images/osbi.png"
-            alt="Vault Logo"
-            className="h-24 w-auto"
-            width={300}
-            height={100}
-            priority
-          />
-        </div>
 
           <div className="flex justify-center items-center space-x-2 mb-6">
             <FontAwesomeIcon
@@ -148,6 +128,7 @@ function SignIn() {
               Sign In to Online Banking
             </h1>
           </div>
+
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
@@ -216,8 +197,9 @@ function SignIn() {
 
             <button
               type="submit"
-              className={`w-full bg-blue-primary hover:bg-blue-primary/40 text-white py-3 rounded-md transition-colors ${isLoading ? "animate-pulse" : ""
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`w-full bg-blue-primary hover:bg-blue-primary/40 text-white py-3 rounded-md transition-colors ${
+                isLoading ? "animate-pulse" : ""
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
               disabled={isLoading}
             >
               {isLoading ? "Signing In..." : "Sign In"}
@@ -232,5 +214,3 @@ function SignIn() {
     </main>
   );
 }
-
-export default SignIn;
