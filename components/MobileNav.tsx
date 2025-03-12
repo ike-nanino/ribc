@@ -40,7 +40,9 @@ const MobileNav = ({ user}: MobileNavProps) => {
           
         </SheetTrigger>
         <SheetContent side="left" className="border-none bg-white">
-            <div className='mt-8 h-20'>
+
+        <SheetTitle>
+        <div className='mt-8 h-20'>
             <Link href="/profile" className="cursor-pointer flex justify-self-center items-center gap-1">
             <Image 
               src="/assets/images/osbicanada.png"
@@ -51,6 +53,8 @@ const MobileNav = ({ user}: MobileNavProps) => {
           </Link>
 
             </div>
+          </SheetTitle>
+            
           
           <div className="mobilenav-sheet">
             <SheetClose asChild>
