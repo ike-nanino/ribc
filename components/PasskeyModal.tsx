@@ -92,13 +92,13 @@ function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalPr
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="text-black">
-            Please enter the 6-digit code sent to your phone number
+            Please enter the 4-digit code
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <div>
           <InputOTP maxLength={4} value={passkey} onChange={setPasskey}>
-            <InputOTPGroup className="w-full flex justify-between">{otpSlots}</InputOTPGroup>
+            <InputOTPGroup className="w-full flex items-center">{otpSlots}</InputOTPGroup>
           </InputOTP>
           {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
         </div>

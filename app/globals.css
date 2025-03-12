@@ -7,6 +7,10 @@
 @theme {
   --color-blue-primary: rgb(0, 117, 190);
   --color-bank-gradient: rgb(0, 117, 190);
+  --color-first-prime: rgb(239 68 68);
+  --color-second-prime: rgb(59 130 246);
+  --color-third-prime: rgb(234 179 8);
+  --color-fourth-prime: rgb(168 85 247);
 }
 
 @layer components {
@@ -15,11 +19,11 @@
   }
 
   .home {
-    @apply overflow-y-hidden flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll;
+    @apply overflow-y-hidden flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll scroll-smooth;
   }
 
   .home-content {
-    @apply overflow-y-scroll flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+    @apply overflow-y-scroll scroll-smooth flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
   }
 
   .home-header {
@@ -119,7 +123,7 @@
   }
 
   .payment-transfer {
-    @apply flex flex-col overflow-y-scroll bg-gray-100 p-8 md:max-h-screen;
+    @apply flex flex-col overflow-y-scroll scroll-smooth bg-gray-100 p-8 md:max-h-screen;
   }
 
   .payment-transfer_form-item {
@@ -274,7 +278,8 @@
   }
 
   ::-webkit-scrollbar {
-    width: 3px;
+    width: 0;
+    scroll-behavior: smooth;
     
   }
   
@@ -283,6 +288,6 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #07adfa;
+    background-color: #ffffff00;
   }
 }
