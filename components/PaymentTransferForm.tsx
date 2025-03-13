@@ -175,7 +175,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     <FormItem>
                       <FormLabel>Account Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="000000000" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
