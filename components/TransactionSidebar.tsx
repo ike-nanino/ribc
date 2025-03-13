@@ -100,7 +100,7 @@ interface Transaction {
       <div className='flex justify-between items-center'>
       <h2 className="text-lg font-semibold mb-4">Transactions</h2>
 
-       <div className='p-6 border bg-white/50'>
+       <div className='px-3 py-2 mb-3 rounded-lg border bg-white/50'>
        <h6 className='text-sm font-semibold cursor-pointer'>View All</h6>
        </div>
       

@@ -73,7 +73,7 @@ function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalPr
     <InputOTPSlot
       key={i}
       index={i}
-      className={`text-2xl text-black font-medium justify-center flex border-1 rounded-lg size-12 gap-4 ${
+      className={`text-2xl text-black font-medium justify-center flex border-1 rounded-lg size-12 lg:size-16 lg:text-4xl gap-4 ${
         i < passkey.length ? "border-green-500" : "border-black"
       } focus:border-green-500`}
     />
