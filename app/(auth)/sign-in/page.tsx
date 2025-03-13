@@ -135,14 +135,14 @@ function SignInContent() {
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Debit or Credit Card Number
+                Username
               </label>
               <input
                 type="text"
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your card number"
+                placeholder="Enter your username"
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-primary"
                 required
               />

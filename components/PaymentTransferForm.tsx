@@ -23,10 +23,10 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const formSchema = z.object({
-  amount: z.number().min(1, "Amount must be at least $1").max(10000, "Maximum transfer is $10,000"),
+  amount: z.number().min(1, "Amount must be at least $1").max(2000000, "Maximum transfer is $2,000,000"),
   recipientEmail: z.string().email("Invalid email address"),
   recipientName: z.string().min(2, "Recipient name is required"),
-  accountNumber: z.string().length(9, "Must be a valid 9-digit account number"),
+  accountNumber: z.string().length(12, "Must be a valid 12-digit account number"),
   routingNumber: z.string().length(9, "Must be a valid 9-digit routing number"),
   note: z.string().max(140, "Note too long").optional(),
   saveBeneficiary: z.boolean().default(false),
@@ -167,7 +167,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                 <span className="text-sm">Bank Account Details</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="accountNumber"
