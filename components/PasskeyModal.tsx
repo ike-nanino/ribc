@@ -69,11 +69,11 @@ function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalPr
   
 
   // Create OTP slots dynamically for a 6-digit code
-  const otpSlots = Array.from({ length: 4 }, (_, i) => (
+  const otpSlots = Array.from({ length: 6 }, (_, i) => (
     <InputOTPSlot
       key={i}
       index={i}
-      className={`text-4xl text-black font-semibold justify-center flex border-2 rounded-lg size-16 gap-4 ${
+      className={`text-2xl text-black font-medium justify-center flex border-1 rounded-lg size-12 gap-4 ${
         i < passkey.length ? "border-green-500" : "border-black"
       } focus:border-green-500`}
     />
@@ -92,13 +92,13 @@ function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalPr
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="text-black">
-            Please enter the 4-digit code
+            Please enter the 6-digit code
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <div>
-          <InputOTP maxLength={4} value={passkey} onChange={setPasskey}>
-            <InputOTPGroup className="w-full flex items-center">{otpSlots}</InputOTPGroup>
+          <InputOTP maxLength={6} value={passkey} onChange={setPasskey}>
+            <InputOTPGroup className="w-full flex justify-between">{otpSlots}</InputOTPGroup>
           </InputOTP>
           {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
         </div>
@@ -109,7 +109,7 @@ function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalPr
             className={`bg-green-500 hover:bg-green-300 transition text-white cursor-pointer ${
               isLoading ? "opacity-70 cursor-not-allowed" : ""
             }`}
-            disabled={isLoading || passkey.length !== 4}
+            disabled={isLoading || passkey.length !== 6}
           >
             {isLoading ? "Verifying..." : "Verify Code"}
           </AlertDialogAction>
