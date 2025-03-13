@@ -1,5 +1,7 @@
 'use client'
 
+
+import { signOut } from "next-auth/react";
 import {
   Sheet,
   SheetClose,
@@ -31,6 +33,17 @@ const MobileNav = ({ user}: MobileNavProps) => {
         setIsOpen(false);
       };
 
+      const handleLogout = async () => {
+        // Clear client-side cache and session
+        await signOut({
+          redirect: false, // We'll handle redirect manually
+          callbackUrl: "/sign-in"
+        });
+        
+        // Force a full page reload to clear all NextAuth session data
+        window.location.href = "/sign-in";
+      };
+
   return (
     <section className="w-fulll max-w-[264px]">
       <Sheet>
@@ -58,7 +71,7 @@ const MobileNav = ({ user}: MobileNavProps) => {
           
           <div className="mobilenav-sheet">
             <SheetClose asChild>
-              <nav className="flex h-full flex-col gap-6 pt-10 text-black">
+              <nav className="flex h-full flex-col gap-6 pt-10 mb-[120px] text-black">
                   {sidebarLinks.map((item) => {
                 const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)
 
@@ -87,9 +100,41 @@ const MobileNav = ({ user}: MobileNavProps) => {
               })}
 
               </nav>
+
+
+
+          
             </SheetClose>
 
-            <Footer type="mobile" />
+
+
+
+            <div className="flex flex-col w-full justify-end" >
+          <Link href='#'>
+          <div className="footer pb-6">
+          <div className="footer_image ">
+                <Image src="/assets/icons/settings.svg" fill alt="settings" />
+            </div>
+            
+          </div>
+          </Link>
+
+           
+          <div className="footer pb-8 cursor-pointer" onClick={handleLogout}>
+          <div className="footer_image" >
+                <Image src="/assets/icons/logout.svg" fill alt="jsm" />
+            </div>
+
+            {/* <div className='hidden md:inline'>
+
+                <p className="text-14 truncate font-normal text-gray-600">
+                    Logout
+                </p>
+            </div> */}
+          </div>
+
+
+        </div>
           </div>
         </SheetContent>
       </Sheet>

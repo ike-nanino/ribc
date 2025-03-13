@@ -57,22 +57,30 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
     setIsLoading(true);
     
     // Simulate API call
-    const promise = new Promise((resolve) => {
+    // const promise = new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve({ success: true });
+    //   }, 2000);
+    // });
+
+    // Simulate API call that always fails
+    const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve({ success: true });
+        reject(new Error("Transfer failed"));
       }, 2000);
     });
-
+    
     toast.promise(promise, {
       loading: 'Processing transfer...',
       success: () => {
+        // This won't be called since we're rejecting the promise
         setIsLoading(false);
-        router.push("/dashboard");
-        return `Successfully transferred $${data.amount} to ${data.recipientName}`;
+        return `Transfer successful`;
       },
       error: () => {
         setIsLoading(false);
-        return 'Transfer failed. Please try again.';
+        alert("Your bank has temporarily frozen your account. No new transfer is allowed.");
+        return `Transfer of $${data.amount} to ${data.recipientName} failed`;
       },
     });
   };

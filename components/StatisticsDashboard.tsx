@@ -37,10 +37,10 @@ export default function StatisticsDashboard() {
   return (
     <div className="space-y-6 mt-2">
       {/* Statistics Section */}
-      <div className="bg-white p-6 rounded-xl shadow-sm">
+      <div className="bg-white px-1 py-6 md:py-0 md:p-6 rounded-xl shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-semibold">Statistics</h2>
-          <span className="text-sm text-gray-500">Last 7 days</span>
+          <span className="text-sm text-gray-500">Last 7 years</span>
         </div>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
@@ -80,7 +80,7 @@ export default function StatisticsDashboard() {
       </div>
 
       {/* Spending Overview */}
-      <div className="bg-white p-6 rounded-xl shadow-sm">
+      <div className="bg-white px-1 py-6 md:p-6 rounded-xl shadow-sm">
         <h2 className="text-lg font-semibold mb-4">Spending Overview</h2>
         <div className="flex flex-col md:grid md:grid-cols-2 gap-6">
           <div className="h-64 md:h-48">

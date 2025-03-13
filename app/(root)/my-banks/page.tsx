@@ -12,23 +12,22 @@ const accountsData = [
   {
     id: '1',
     name: 'Primary Checking',
-    balance: 5280.42,
+    balance: 7297596,
     accountNumber: '**** **** 4567',
     transactions: [
       { id: 1, date: 'Mar 10', description: 'Grocery Store', amount: -78.65, category: 'Shopping' },
       { id: 2, date: 'Mar 08', description: 'Salary Deposit', amount: 3200.00, category: 'Income' },
-      { id: 3, date: 'Mar 05', description: 'Electric Bill', amount: -142.50, category: 'Utilities' },
-      { id: 4, date: 'Mar 01', description: 'Rent Payment', amount: -1500.00, category: 'Housing' },
+      { id: 3, date: 'Mar 01', description: 'Rent Payment', amount: -8500.00, category: 'Housing' },
     ]
   },
   {
     id: '2',
     name: 'Savings Account',
-    balance: 12750.88,
+    balance: 1670404,
     accountNumber: '**** **** 7890',
     transactions: [
-      { id: 1, date: 'Mar 01', description: 'Transfer from Checking', amount: 500.00, category: 'Transfer' },
-      { id: 2, date: 'Feb 15', description: 'Interest Payment', amount: 12.88, category: 'Income' },
+      { id: 1, date: 'Mar 01', description: 'Transfer from Checking', amount: 1019500.00, category: 'Transfer' },
+      { id: 2, date: 'Feb 15', description: 'Interest Payment', amount: 212.88, category: 'Income' },
     ]
   }
 ];
