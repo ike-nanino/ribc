@@ -8,8 +8,8 @@ function FirstTable() {
                 Bank Holiday
             </h1>
 
-            <div className="overflow-x-auto mb-10 px-2 md:px-8 lg:px-20">
-                <table className="w-full table-auto shadow-sm border border-gray-200">
+            <div className="overflow-x-auto mb-10 md:px-4 lg:px-20">
+                <table className="w-full table-auto shadow-sm border text-xs md:text-base border-gray-200">
                     <thead>
                         <tr className="bg-blue-900 text-white">
                             <th colSpan={4} className="px-4 py-3 text-left text-sm font-semibold">
@@ -100,8 +100,8 @@ function FirstTable() {
                 </table>
             </div>
 
-            <div className="overflow-x-auto mb-10 px-2 md:px-8 lg:px-20">
-                <table className="w-full table-auto shadow-sm border border-gray-200">
+            <div className="overflow-x-auto mb-10 md:px-8 lg:px-20">
+                <table className="w-full table-auto shadow-sm border text-xs md:text-base border-gray-200">
                     <thead>
                         <tr className="bg-blue-900 text-white">
                             <th colSpan={4} className="px-4 py-3 text-left text-sm font-semibold">
@@ -220,8 +220,8 @@ function FirstTable() {
 
 
 
-            <div className="overflow-x-auto mb-10  px-2 md:px-8 lg:px-20">
-                <table className="w-full table-auto shadow-sm border border-gray-200">
+            <div className="overflow-x-auto mb-10 md:px-8 lg:px-20">
+                <table className="w-full table-auto shadow-sm border text-xs md:text-base border-gray-200">
                     <thead>
                         <tr className="bg-blue-900 text-white">
                             <th colSpan={4} className="px-4 py-3 text-left text-sm font-semibold">

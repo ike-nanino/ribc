@@ -18,8 +18,8 @@ function MobileStuff() {
               <Image
                 src={item.src}
                 alt={item.label}
-                width={120}
-                height={120}
+                width={60}
+                height={60}
                 className="object-cover"
                 quality={75}
               />
