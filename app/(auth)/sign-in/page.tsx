@@ -110,11 +110,11 @@ function SignInContent() {
         <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
           <div className="flex justify-center mb-6">
             <Image
-              src="/assets/images/osbi.png"
+              src="/assets/images/osbicanada1.png"
               alt="Vault Logo"
-              className="h-24 w-auto"
+              className="h-18 w-auto"
               width={300}
-              height={100}
+              height={60}
               priority
             />
           </div>
