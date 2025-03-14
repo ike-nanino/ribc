@@ -1,3 +1,4 @@
+import AboutUs from '@/components/home/AboutUs';
 import FirstTable from '@/components/home/FirstTable';
 import HeroSlider from '@/components/home/HeroSlider';
 import MobileNavHome from '@/components/home/MobileNavHome';
@@ -9,7 +10,7 @@ import Link from 'next/link';
 export default function HomePage() {
   return (
     <main>
-      <header className='bg-blue-800 h-14 flex jusity-betweeen items-center mb-8'>
+      <header className='bg-blue-800 h-14 flex jusity-betweeen items-center'>
         <div className='bg-white relative w-48 h-14'>
           <Image
             src='/assets/images/osbicanada1.png'
@@ -42,6 +43,9 @@ export default function HomePage() {
       <FirstTable />
 
       <WhyChooseUs />
+
+
+      <AboutUs />
 
 
       {/* Footer */}

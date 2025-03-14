@@ -28,7 +28,7 @@ const HeroSlider = () => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full aspect-video overflow-hidden">
+    <div className="relative w-full aspect-video overflow-hidden mt-16">
       <AnimatePresence initial={false} mode='wait'>
         <motion.div
           key={currentIndex}

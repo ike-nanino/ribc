@@ -10,7 +10,7 @@ function MobileStuff() {
   ];
 
   return (
-    <section className="my-6 p-4">
+    <section className="my-4 p-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {imageData.map((item, index) => (
           <div key={index} className="flex flex-col items-center p-8">
