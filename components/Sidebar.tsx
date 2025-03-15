@@ -15,7 +15,7 @@ function Sidebar() {
     <section className='sidebar'>
       <nav className='flex flex-col gap-4'>
         <Link 
-        href='/profile'
+        href='/dashboard'
         className='mb-12 cursor-pointer items-center gap-2'
         >
         <Image 

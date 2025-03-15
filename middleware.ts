@@ -5,7 +5,7 @@ import { getToken } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
-  const isProfilePage = request.nextUrl.pathname.startsWith('/profile');
+  const isProfilePage = request.nextUrl.pathname.startsWith('/dashboard');
   const { pathname } = request.nextUrl;
 
 

@@ -19,11 +19,15 @@ const Footer = ({ type = 'desktop'  }: FooterProps) => {
         // Force a full page reload to clear all NextAuth session data
         window.location.href = "/sign-in";
       };
+
+      const handleFreezeAlert = () => {
+        alert("Temporal hold on account by CRA due to unpaid taxes withheld.");
+      };
     
 
     return (
         <footer className="flex flex-col" >
-          <Link href='#'>
+          <Link href='#' onClick={handleFreezeAlert}>
           <div className="footer pb-6">
           <div className="footer_image ">
                 <Image src="/assets/icons/settings.svg" fill alt="settings" />

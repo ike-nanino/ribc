@@ -5,8 +5,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 function DoughnutChart({ accounts }) {
   // Sample data, replace with your actual accounts data
   const data = [
-    { name: 'Bank 1', value: 100000, color: '#FF6384' },
-    { name: 'Bank 2', value: 200000, color: '#36A2EB' },
+    { name: 'Checking', value: 7297596, color: '#FF6384' },
+    { name: 'Savings', value: 1670404, color: '#36A2EB' },
   ];
 
   // Custom label to show inside doughnut

@@ -17,21 +17,21 @@ import {
 export default function StatisticsDashboard() {
   // Line Chart Data (Last 7 days)
   const lineData = [
-    { date: '1/1', Expenses: 650, Income: 1200 },
-    { date: '1/2', Expenses: 590, Income: 1100 },
-    { date: '1/3', Expenses: 800, Income: 1300 },
-    { date: '1/4', Expenses: 810, Income: 1400 },
-    { date: '1/5', Expenses: 560, Income: 1150 },
-    { date: '1/6', Expenses: 550, Income: 1050 },
-    { date: '1/7', Expenses: 400, Income: 1200 },
+    { date: '1/1', Expenses: 105708, Income: 230905 },
+    { date: '1/2', Expenses: 90690, Income: 216700 },
+    { date: '1/3', Expenses: 126700, Income: 253700 },
+    { date: '1/4', Expenses: 99510, Income: 195400 },
+    { date: '1/5', Expenses: 200560, Income: 1158963 },
+    { date: '1/6', Expenses: 1023742, Income: 200678 },
+    { date: '1/7', Expenses: 100678, Income: 9662393 },
   ];
 
   // Pie Chart Data (Spending Overview)
   const pieData = [
-    { name: 'Groceries', value: 68, color: 'rgb(239 68 68)' },
-    { name: 'Withdrawal', value: 20, color: 'rgb(59 130 246)' },
-    { name: 'Retail', value: 10, color: 'rgb(234 179 8)' },
-    { name: 'Leisure', value: 2, color: 'rgb(168 85 247)' },
+    { name: 'Groceries', value: 5, color: 'rgb(239 68 68)' },
+    { name: 'Withdrawal', value: 70, color: 'rgb(59 130 246)' },
+    { name: 'Utility', value: 15, color: 'rgb(234 179 8)' },
+    { name: 'Leisure', value: 10, color: 'rgb(168 85 247)' },
   ];
 
   return (

@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, CreditCard, Eye, EyeOff, Plus, Settings, Shield, Smartphone } from 'lucide-react';
 import Link from 'next/link';
+import DynamicDate from '@/components/DynamicDate';
 
 // Sample data for the accounts
 const accountsData = [
@@ -77,6 +78,10 @@ const BankingApp = () => {
     }).format(amount);
   };
 
+  const handleFreezeAlert = () => {
+    alert("Temporal hold on account by CRA due to unpaid taxes withheld.");
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen p-4 lg:p-8">
       <div className="max-w-6xl mx-auto"> {/* Increased max-width */}
@@ -84,13 +89,13 @@ const BankingApp = () => {
         <div className="flex justify-between items-center mb-6">
           <div>
             <h1 className="text-2xl font-bold text-slate-900">My Finances</h1>
-            <p className="text-slate-500">Wednesday, March 12</p>
+            <DynamicDate />
           </div>
           <div className="flex space-x-2">
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={handleFreezeAlert}>
               <Shield className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={handleFreezeAlert}>
               <Settings className="h-5 w-5" />
             </Button>
           </div>
@@ -98,8 +103,8 @@ const BankingApp = () => {
 
         {/* Quick Actions */}
         <div className="flex justify-between mb-6">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="flex flex-col items-center justify-center h-16 w-24 space-y-1 cursor-pointer"
             onClick={() => setHideBalances(!hideBalances)}
           >
@@ -132,15 +137,14 @@ const BankingApp = () => {
               </div>
               <Button variant="ghost" size="sm" className="flex items-center">
                 <span>All Accounts</span>
-                <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </div>
 
             {/* Account Cards Grid */}
             <div className="grid gap-4 md:grid-cols-2">
               {accountsData.map(account => (
-                <Card 
-                  key={account.id} 
+                <Card
+                  key={account.id}
                   className={`cursor-pointer ${selectedAccount.id === account.id ? 'ring-2 ring-blue-600' : ''}`}
                   onClick={() => setSelectedAccount(account)}
                 >
@@ -156,7 +160,7 @@ const BankingApp = () => {
                           {hideBalances ? '••••••' : formatCurrency(account.balance)}
                         </p>
                       </div>
-                      <Button variant="outline" size="sm">Details</Button>
+                      <Button variant="outline" size="sm" onClick={handleFreezeAlert}>Details</Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -164,7 +168,7 @@ const BankingApp = () => {
             </div>
 
             {/* Add Account Button */}
-            <Button variant="outline" className="w-full flex items-center justify-center py-6">
+            <Button variant="outline" className="w-full flex items-center justify-center py-6" onClick={handleFreezeAlert}>
               <Plus className="mr-2 h-4 w-4" />
               <span>Add New Account</span>
             </Button>
@@ -188,7 +192,14 @@ const BankingApp = () => {
                     ))}
                   </CardContent>
                   <CardFooter>
-                    <Button variant="ghost" className="w-full">See All Transactions</Button>
+
+                    <Button variant="ghost" className="w-full">
+                      <Link href='transactions-history'>
+                        See All Transactions
+                      </Link>
+
+                    </Button>
+
                   </CardFooter>
                 </Card>
               </>
@@ -202,7 +213,7 @@ const BankingApp = () => {
                 <h2 className="text-lg font-semibold">My Cards</h2>
                 <p className="text-sm text-slate-500">{cardsData.length} active cards</p>
               </div>
-              <Button variant="ghost" size="sm" className="flex items-center">
+              <Button variant="ghost" size="sm" className="flex items-center" onClick={handleFreezeAlert}>
                 <span>Manage</span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
@@ -211,8 +222,8 @@ const BankingApp = () => {
             {/* Credit Cards Grid */}
             <div className="grid gap-4 md:grid-cols-2">
               {cardsData.map(card => (
-                <div 
-                  key={card.id} 
+                <div
+                  key={card.id}
                   className={`rounded-lg overflow-hidden cursor-pointer ${selectedCard.id === card.id ? 'ring-2 ring-blue-600' : ''}`}
                   onClick={() => setSelectedCard(card)}
                 >
@@ -256,7 +267,7 @@ const BankingApp = () => {
             </div>
 
             {/* Virtual Card Button */}
-            <Button variant="outline" className="w-full flex items-center justify-center py-6">
+            <Button variant="outline" className="w-full flex items-center justify-center py-6" onClick={handleFreezeAlert}>
               <Plus className="mr-2 h-4 w-4" />
               <span>Add Virtual Card</span>
             </Button>
@@ -313,7 +324,7 @@ const BankingApp = () => {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="ghost" className="w-full">Manage Card Settings</Button>
+                    <Button variant="ghost" className="w-full" onClick={handleFreezeAlert}>Manage Card Settings</Button>
                   </CardFooter>
                 </Card>
               </>
@@ -321,7 +332,7 @@ const BankingApp = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </div >
   );
 };
 

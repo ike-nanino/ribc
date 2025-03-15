@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
         const { username, password, twoFactorCode } = credentials as UserCredentials;
 
         // Initial credential check
-        if (username === "123" && password === "1234") {
+        if (username === "Leandersb" && password === "jollylove18") {
           // If 2FA code provided
           if (twoFactorCode) {
             const isValid = twoFactorCode === process.env.NEXT_PUBLIC_ADMIN_PASSKEY;

@@ -34,14 +34,20 @@ const MobileNav = ({ user}: MobileNavProps) => {
       };
 
       const handleLogout = async () => {
+
         // Clear client-side cache and session
         await signOut({
           redirect: false, // We'll handle redirect manually
           callbackUrl: "/sign-in"
         });
-        
+        setIsOpen(false);
         // Force a full page reload to clear all NextAuth session data
         window.location.href = "/sign-in";
+      };
+
+      const handleFreezeAlert = () => {
+        setIsOpen(false);
+        alert("🚨 Your bank account has been frozen! Contact support immediately.");
       };
 
   return (
@@ -56,7 +62,7 @@ const MobileNav = ({ user}: MobileNavProps) => {
 
         <SheetTitle>
         <div className='mt-8 h-20'>
-            <Link href="/profile" className="cursor-pointer flex justify-self-center items-center gap-1">
+            <Link href="/dashboard" className="cursor-pointer flex justify-self-center items-center gap-1">
             <Image 
               src="/assets/images/osbicanada.png"
               width={120}
@@ -112,7 +118,7 @@ const MobileNav = ({ user}: MobileNavProps) => {
             <div className="flex flex-col w-full justify-end" >
           <Link href='#'>
           <div className="footer pb-6">
-          <div className="footer_image ">
+          <div className="footer_image " onClick={handleFreezeAlert}>
                 <Image src="/assets/icons/settings.svg" fill alt="settings" />
             </div>
             

@@ -23,11 +23,12 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const formSchema = z.object({
-  amount: z.number().min(1, "Amount must be at least $1").max(2000000, "Maximum transfer is $2,000,000"),
+  amount: z.number().min(1, "Amount must be at least $1").max(20000000000000, "Maximum transfer is Unlimited"),
   recipientEmail: z.string().email("Invalid email address"),
   recipientName: z.string().min(2, "Recipient name is required"),
-  accountNumber: z.string().length(12, "Must be a valid 12-digit account number"),
+  accountNumber: z.string().length(13, "Must be a valid 13-digit account number"),
   routingNumber: z.string().length(9, "Must be a valid 9-digit routing number"),
+  swiftCode: z.string().max(8, "Swift Code too long").optional(),
   note: z.string().max(140, "Note too long").optional(),
   saveBeneficiary: z.boolean().default(false),
 });
@@ -48,6 +49,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       recipientName: "",
       accountNumber: "",
       routingNumber: "",
+      swiftCode:"",
       note: "",
       saveBeneficiary: false,
     },
@@ -79,7 +81,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       },
       error: () => {
         setIsLoading(false);
-        alert("Your bank has temporarily frozen your account. No new transfer is allowed.");
+        alert("Temporal hold on account by CRA due to unpaid taxes withheld.");
         return `Transfer of $${data.amount} to ${data.recipientName} failed`;
       },
     });
@@ -152,7 +154,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                   <FormItem>
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="john.doe@example.com" type="email" {...field} />
+                      <Input placeholder="johndoe@example.com" type="email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -188,6 +190,20 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Routing Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="swiftCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Swift Code</FormLabel>
                       <FormControl>
                         <Input placeholder="" {...field} />
                       </FormControl>

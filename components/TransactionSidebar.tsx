@@ -25,7 +25,7 @@ interface Transaction {
       amount: 5768900,
       type: "income",
       category: "Transfer",
-      balance: 5868900,
+      balance: 5768900,
     },
    
     {
@@ -35,7 +35,7 @@ interface Transaction {
       amount: 32980622,
       type: "income",
       category: "Transfer",
-      balance: 10000,
+      balance: 32980622,
     },
    
     {
@@ -45,7 +45,7 @@ interface Transaction {
       amount: 450,
       type: "expense",
       category: "Payment",
-      balance: 10000,
+      balance: 450,
     },
    
     {
@@ -55,7 +55,7 @@ interface Transaction {
       amount: 3280.50,
       type: "expense",
       category: "Utility",
-      balance: 10000,
+      balance: 3280.50,
     },
 
     {
@@ -65,7 +65,7 @@ interface Transaction {
       amount: 1234.75,
       type: "expense",
       category: "Cafe and Restaurant",
-      balance: 10000,
+      balance: 1234.75,
     },
    
   ];

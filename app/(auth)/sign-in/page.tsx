@@ -59,7 +59,7 @@ function SignInContent() {
     const checkSession = async () => {
       const session = await getSession();
       if (session && !session.requiresTwoFactor) {
-        router.push("/profile");
+        router.push("/dashboard");
       }
     };
     checkSession();
@@ -85,14 +85,14 @@ function SignInContent() {
       if (session?.requiresTwoFactor) {
         setShowPasskeyModal(true);
       } else {
-        router.push("/profile");
+        router.push("/dashboard");
       }
     }
     setIsLoading(false);
   };
 
   const handleTwoFactorSuccess = () => {
-    router.push("/profile");
+    router.push("/dashboard");
   };
 
   return (
