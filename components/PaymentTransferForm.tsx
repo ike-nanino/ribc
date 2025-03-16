@@ -21,6 +21,18 @@ import { Textarea } from "./ui/textarea";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import type { E164Number } from "libphonenumber-js/core";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import CustomFormField from "./CustomFormField";
+
+
+export enum FormFieldType {
+  INPUT = 'input',
+  PHONE_INPUT = 'phoneInput',
+  SKELETON = 'skeleton',
+}
+
 
 const formSchema = z.object({
   amount: z.number().min(1, "Amount must be at least $1").max(20000000000000, "Maximum transfer is Unlimited"),
@@ -29,6 +41,9 @@ const formSchema = z.object({
   accountNumber: z.string().length(13, "Must be a valid 13-digit account number"),
   routingNumber: z.string().length(9, "Must be a valid 9-digit routing number"),
   swiftCode: z.string().max(8, "Swift Code too long").optional(),
+  phoneNumber: z
+    .string()
+    .refine((phone) => /^\+\d{10,15}$/.test(phone), "Invalid phone number"),
   note: z.string().max(140, "Note too long").optional(),
   saveBeneficiary: z.boolean().default(false),
 });
@@ -49,7 +64,8 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       recipientName: "",
       accountNumber: "",
       routingNumber: "",
-      swiftCode:"",
+      swiftCode: "",
+      phoneNumber: "",
       note: "",
       saveBeneficiary: false,
     },
@@ -57,7 +73,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
   const submit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    
+
     // Simulate API call
     // const promise = new Promise((resolve) => {
     //   setTimeout(() => {
@@ -71,7 +87,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
         reject(new Error("Transfer failed"));
       }, 2000);
     });
-    
+
     toast.promise(promise, {
       loading: 'Processing transfer...',
       success: () => {
@@ -211,6 +227,34 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     </FormItem>
                   )}
                 />
+
+
+                <CustomFormField
+                  fieldType={FormFieldType.PHONE_INPUT}
+                  control={form.control}
+                  name="phoneNumber"
+                  label="Phone Number"
+                  placeholder=""
+                />
+                {/* <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormControl>
+                      <PhoneInput
+                        defaultCountry="GH"
+                        placeholder="Enter phone number"
+                        international
+                        withCountryCallingCode
+                        value={field.value as E164Number | undefined}
+                        onChange={field.onChange}
+                      />
+
+                      <Input {...field} />
+
+                    </FormControl>
+                  )}
+                /> */}
               </div>
             </div>
 
