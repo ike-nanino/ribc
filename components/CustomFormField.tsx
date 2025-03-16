@@ -38,12 +38,6 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   } = props;
 
 
-  const CustomInput = (props: InputHTMLAttributes<HTMLInputElement>) => (
-    <input
-      {...props}
-      className="p-2 outline-none border rounded-md w-full focus:ring-0 focus:ring-offset-0 focus:border-red-200"
-    />
-  );
 
 
 
@@ -72,7 +66,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             withCountryCallingCode
             value={field.value as E164Number | undefined}
             onChange={field.onChange}
-            inputComponent={CustomInput}
+            className="p-2 outline-none border rounded-md w-full focus:ring-0 focus:ring-offset-0 focus:border-gray-200"
           />
         </FormControl>
       );
