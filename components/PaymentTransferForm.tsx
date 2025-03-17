@@ -97,7 +97,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       },
       error: () => {
         setIsLoading(false);
-        alert("Temporal hold on account by CRA due to unpaid taxes withheld.");
+        alert("Temporal Hold On Account By CRA Due To Unpaid Taxes Withheld.");
         return `Transfer of $${data.amount} to ${data.recipientName} failed`;
       },
     });

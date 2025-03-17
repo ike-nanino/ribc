@@ -79,7 +79,7 @@ const BankingApp = () => {
   };
 
   const handleFreezeAlert = () => {
-    alert("Temporal hold on account by CRA due to unpaid taxes withheld.");
+    alert("Temporal Hold On Account By CRA Due To Unpaid Taxes Withheld.");
   };
 
   return (
