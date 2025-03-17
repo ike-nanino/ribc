@@ -32,7 +32,7 @@ interface Transaction {
       id: "2",
       date: "2024-03-1",
       title: "Deposit",
-      amount: 32980622,
+      amount: 3298062,
       type: "income",
       category: "Transfer",
       balance: 32980622,
@@ -40,7 +40,7 @@ interface Transaction {
    
     {
       id: "3",
-      date: "2024-02-11",
+      date: "2024-01-04",
       title: "Car Maintenance",
       amount: 450,
       type: "expense",
@@ -50,7 +50,7 @@ interface Transaction {
    
     {
       id: "5",
-      date: "2024-02-13",
+      date: "2024-01-03",
       title: "Electricity Bill",
       amount: 3280.50,
       type: "expense",
@@ -60,7 +60,7 @@ interface Transaction {
 
     {
       id: "6",
-      date: "2022-01-05",
+      date: "2022-01-02",
       title: "Groceries",
       amount: 1234.75,
       type: "expense",
