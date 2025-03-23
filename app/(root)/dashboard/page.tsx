@@ -7,6 +7,7 @@ import React from 'react'
 function Profile() {
   return (
     <section className='home'>
+    
         <div className='home-content'>
             <header className='home-header'>
                 <HeaderBox 

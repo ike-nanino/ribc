@@ -36,7 +36,9 @@ export enum FormFieldType {
 
 const formSchema = z.object({
   amount: z.number().min(1, "Amount must be at least $1").max(20000000000000, "Maximum transfer is Unlimited"),
-  recipientEmail: z.string().email("Invalid email address"),
+  recipientAddress: z.string().max(140, "Address too long"),
+  bankName: z.string().max(140, "Address too long"),
+  bankAddress: z.string().max(140, "Address too long"),
   recipientName: z.string().min(2, "Recipient name is required"),
   accountNumber: z.string().length(13, "Must be a valid 13-digit account number"),
   routingNumber: z.string().length(9, "Must be a valid 9-digit routing number"),
@@ -60,7 +62,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       amount: undefined,
-      recipientEmail: "",
+      recipientAddress: "",
       recipientName: "",
       accountNumber: "",
       routingNumber: "",
@@ -165,12 +167,12 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
               <FormField
                 control={form.control}
-                name="recipientEmail"
+                name="recipientAddress"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel>Recepient Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="johndoe@example.com" type="email" {...field} />
+                      <Input  {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -186,6 +188,32 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="bankName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Bank Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="bankAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Bank Address</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="accountNumber"

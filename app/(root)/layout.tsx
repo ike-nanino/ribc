@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className='flex h-screen w-full overflow-hidden'>
+    <main className='flex h-screen max-h-screen w-full overflow-hidden'>
  
     <Sidebar />
 

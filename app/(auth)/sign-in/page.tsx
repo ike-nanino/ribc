@@ -127,7 +127,12 @@ function SignInContent() {
             <h1 className="text-2xl font-semibold text-gray-900 text-center">
               Sign In to Online Banking
             </h1>
+
           </div>
+
+          {error && (
+        <p className="mx-4 text-red-600 text-sm text-center">{error}</p>
+      )}
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -191,7 +196,7 @@ function SignInContent() {
                   onChange={(e) => setRememberCard(e.target.checked)}
                   className="mr-2"
                 />
-                Remember my card number
+                Remember me
               </label>
             </div>
 
@@ -208,9 +213,7 @@ function SignInContent() {
         </div>
       </div>
 
-      {error && (
-        <p className="mt-4 text-red-600 text-sm text-center">{error}</p>
-      )}
+      
     </main>
   );
 }
