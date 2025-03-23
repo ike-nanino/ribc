@@ -23,7 +23,7 @@
   }
 
   .home-content {
-    @apply overflow-y-scroll scroll-smooth flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+    @apply overflow-y-scroll scroll-smooth mt-20 md:mt-0 flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
   }
 
   .home-header {
@@ -123,7 +123,7 @@
   }
 
   .payment-transfer {
-    @apply flex flex-col overflow-y-scroll scroll-smooth bg-gray-100 p-8 max-xl:h-screen max-xl:overflow-y-scroll;
+    @apply flex flex-col scroll-smooth bg-gray-100 p-8 min-h-screen mt-20 md:mt-0;
   }
 
   .payment-transfer_form-item {

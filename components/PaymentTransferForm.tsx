@@ -21,9 +21,7 @@ import { Textarea } from "./ui/textarea";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import type { E164Number } from "libphonenumber-js/core";
 import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
 import CustomFormField from "./CustomFormField";
 
 
@@ -178,6 +176,16 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                   </FormItem>
                 )}
               />
+
+
+              <CustomFormField
+                fieldType={FormFieldType.PHONE_INPUT}
+                control={form.control}
+                name="phoneNumber"
+                label="Phone Number"
+                placeholder=""
+              />
+
             </div>
 
             {/* Bank Details */}
@@ -256,33 +264,6 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                   )}
                 />
 
-
-                <CustomFormField
-                  fieldType={FormFieldType.PHONE_INPUT}
-                  control={form.control}
-                  name="phoneNumber"
-                  label="Phone Number"
-                  placeholder=""
-                />
-                {/* <FormField
-                  control={form.control}
-                  name="phoneNumber"
-                  render={({ field }) => (
-                    <FormControl>
-                      <PhoneInput
-                        defaultCountry="GH"
-                        placeholder="Enter phone number"
-                        international
-                        withCountryCallingCode
-                        value={field.value as E164Number | undefined}
-                        onChange={field.onChange}
-                      />
-
-                      <Input {...field} />
-
-                    </FormControl>
-                  )}
-                /> */}
               </div>
             </div>
 

@@ -97,7 +97,7 @@ export default function TransactionsPage() {
   const totalPages = Math.ceil(initialTransactions.length / transactionsPerPage);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto mt-20 md:mt-0">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Transaction History</CardTitle>
