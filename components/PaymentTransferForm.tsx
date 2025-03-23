@@ -34,8 +34,8 @@ export enum FormFieldType {
 
 const formSchema = z.object({
   amount: z.number().min(1, "Amount must be at least $1").max(20000000000000, "Maximum transfer is Unlimited"),
-  recipientAddress: z.string().max(140, "Address too long"),
-  bankName: z.string().max(140, "Address too long"),
+  recipientAddress: z.string().max(70, "Address too long"),
+  bankName: z.string().max(50, "Address too long"),
   bankAddress: z.string().max(140, "Address too long"),
   recipientName: z.string().min(2, "Recipient name is required"),
   accountNumber: z.string().length(13, "Must be a valid 13-digit account number"),
@@ -62,6 +62,8 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
       amount: undefined,
       recipientAddress: "",
       recipientName: "",
+      bankName: "",
+      bankAddress: "",
       accountNumber: "",
       routingNumber: "",
       swiftCode: "",
