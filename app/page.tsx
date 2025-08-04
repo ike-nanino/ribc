@@ -10,6 +10,7 @@ import Link from 'next/link';
 export default function HomePage() {
   return (
     <main>
+      
       <header className='bg-blue-800 h-14 flex jusity-betweeen items-center'>
         <div className='bg-white relative w-48 h-14'>
           <Image

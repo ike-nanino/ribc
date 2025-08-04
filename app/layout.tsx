@@ -15,10 +15,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "SBI Canada Bank",
-  description: "SBI Canada Bank, Personal Banking, Online Banking Services - SBI ...",
-};
+  metadataBase: new URL('https://bsicanadabank.com'),
+  title: {
+    default: 'SBI Canada Bank',
+    template: 'Home | SBI Canada Bank',
+  },
+  description: 'SBI Canada Bank, Personal Banking, Online Banking Services - SBI ... Canada Bank offers a range of personal banking services including online banking, loans, and investment options. Experience secure and convenient banking with us.',
+  openGraph: {
+    type: 'website',
+    url: 'https://bsicanadabank.com',
+    siteName: 'SBI Canada Bank',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function RootLayout({
   children,
