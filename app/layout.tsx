@@ -45,10 +45,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         
-        <SessionProviderWrapper>
-        <SessionTimer />
+ 
         {children}
-        </SessionProviderWrapper>
+       
        
       </body>
     </html>

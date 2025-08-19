@@ -5,12 +5,13 @@ import { createClient } from "@/utils/supabase/client";
 
 type Props = {
   username: string;
+  email: string; // Added this prop
   password: string;
   onSuccess: () => void;
   onClose: () => void;
 };
 
-export default function PasskeyModal({ onSuccess, onClose }: Props) {
+export default function PasskeyModal({ username, email, onSuccess, onClose }: Props) {
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const supabase = createClient();

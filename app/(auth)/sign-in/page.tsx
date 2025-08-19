@@ -21,13 +21,14 @@ export default function SignInPage() {
 }
 
 function SignInContent() {
-  const [login, setLogin] = useState("");         // email (or "username or email" label)
+  const [login, setLogin] = useState("");         
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasskeyModal, setShowPasskeyModal] = useState(false);
+  const [userEmail, setUserEmail] = useState(""); // Store resolved email
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -53,34 +54,29 @@ function SignInContent() {
     setError(null);
     setIsLoading(true);
     
-  // inside handleSubmit, before signInWithPassword:
-let email = login;
-if (!login.includes("@")) {
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("id, username")
-    .eq("username", login)
-    .single();
+    let email = login;
+    
+    // If login doesn't contain @, it's a username - look up the email
+    if (!login.includes("@")) {
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("email")
+        .eq("username", login)
+        .single();
 
-  if (!profile) {
-    setError("User not found.");
-    setIsLoading(false);
-    return;
-  }
+      if (profileError || !profile) {
+        setError("User not found.");
+        setIsLoading(false);
+        return;
+      }
 
-  // You can't read user email from public tables; if you need the email,
-  // store it in profiles too (non-sensitive) or just decide the "username"
-  // equals the email's local-part and reconstruct it.
-  // Simplest: store email in profiles and select it here:
-  // .select("email").eq("username", login).single();
-  // email = profile.email;
-}
-// then use `email` in signInWithPassword({ email, password })
+      email = profile.email;
+    }
 
+    setUserEmail(email); // Store for PasskeyModal
 
-    // For simplicity, treat "login" as email. (Optional username mapping provided at bottom.)
     const { data, error: authError } = await supabase.auth.signInWithPassword({
-      email: login,
+      email: email,
       password,
     });
 
@@ -94,10 +90,12 @@ if (!login.includes("@")) {
     setShowPasskeyModal(true);
     setIsLoading(false);
 
-    // (Optional) remember me: Supabase sessions are cookie-based already.
-    // You could persist the email locally if you want:
-    if (remember) localStorage.setItem("last_login_email", login);
-    else localStorage.removeItem("last_login_email");
+    // Remember me functionality
+    if (remember) {
+      localStorage.setItem("last_login_email", login);
+    } else {
+      localStorage.removeItem("last_login_email");
+    }
   };
 
   const handleTwoFactorSuccess = () => {
@@ -105,16 +103,39 @@ if (!login.includes("@")) {
   };
 
   const onForgotPassword = async () => {
-    if (!login || !login.includes("@")) {
-      setError("Enter your email above, then click 'Forgot password?'");
+    let email = login;
+    
+    // If no login entered
+    if (!login) {
+      setError("Enter your email or username above, then click 'Forgot password?'");
       return;
     }
+
+    // If username, convert to email
+    if (!login.includes("@")) {
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("email")
+        .eq("username", login)
+        .single();
+
+      if (profileError || !profile) {
+        setError("User not found.");
+        return;
+      }
+      email = profile.email;
+    }
+
     setError(null);
-    const { error } = await supabase.auth.resetPasswordForEmail(login, {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
-    if (error) setError(error.message);
-    else alert("Password reset email sent.");
+    
+    if (error) {
+      setError(error.message);
+    } else {
+      alert("Password reset email sent.");
+    }
   };
 
   useEffect(() => {
@@ -127,6 +148,7 @@ if (!login.includes("@")) {
       {showPasskeyModal && (
         <PasskeyModal
           username={login}
+          email={userEmail}
           password={password}
           onSuccess={handleTwoFactorSuccess}
           onClose={() => setShowPasskeyModal(false)}
@@ -165,7 +187,7 @@ if (!login.includes("@")) {
                 id="login"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
-                placeholder="Enter your email"
+                placeholder="Enter your username or email"
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-primary"
                 required
               />

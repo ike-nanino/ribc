@@ -1,3 +1,4 @@
+import AuthGuard from '@/components/AuthGuard'
 import HeaderBox from '@/components/HeaderBox'
 import StatisticsDashboard from '@/components/StatisticsDashboard'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
@@ -6,6 +7,7 @@ import React from 'react'
 
 function Profile() {
   return (
+    <AuthGuard>
     <section className='home'>
     
         <div className='home-content'>
@@ -31,6 +33,8 @@ function Profile() {
         <TransactionSidebar />
       
     </section>
+
+    </AuthGuard>
   )
 }
 
