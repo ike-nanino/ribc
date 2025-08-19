@@ -14,7 +14,7 @@ function WhyChooseUs() {
             <h1 className='text-2xl lg:text-4xl text-blue-900 px-2 lg:px-4'>
                 Why Choose Us <br />
 
-                SBI Canada Bank
+                Royal Investment Bank
             </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {imageData.map((item, index) => (

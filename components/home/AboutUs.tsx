@@ -8,20 +8,20 @@ function AboutUs() {
 
 
 
-                <h1 className='text-blue-900 text-2xl lg:text-4xl'>About SBI Canada Bank</h1>
+                <h1 className='text-blue-900 text-2xl lg:text-4xl'>About Royal Investment Bank</h1>
 
-                <p>SBI Canada Bank was incorporated in 1982 as a wholly owned subsidiary of the State Bank of India, India's largest commercial Bank in terms of profits, assets, deposits, branches and employees. SBI Canada Bank provides full-service banking to meet the needs of our retail, commercial and corporate customers, including accounts, mortgages, loans, remittances and more.</p>
+                <p>Royal Investment Bank was incorporated in 1982 as a wholly owned subsidiary of the State Bank of India, India's largest commercial Bank in terms of profits, assets, deposits, branches and employees. Royal Investment Bank provides full-service banking to meet the needs of our retail, commercial and corporate customers, including accounts, mortgages, loans, remittances and more.</p>
 
                 <p>
-                    SBI Canada Bank offers friendly in-person service at branches in Toronto, Mississauga, Scarborough and Brampton in Ontario, and Vancouver and Surrey in British Columbia. Our experienced staff is fluent in many Indian languages and ready to make your banking experience smooth and efficient. We offer products and services tailored to the needs of individuals and businesses, including an easy account-opening process, competitive rates and an intuitive mobile banking application.
+                    Royal Investment Bank offers friendly in-person service at branches in Toronto, Mississauga, Scarborough and Brampton in Ontario, and Vancouver and Surrey in British Columbia. Our experienced staff is fluent in many Indian languages and ready to make your banking experience smooth and efficient. We offer products and services tailored to the needs of individuals and businesses, including an easy account-opening process, competitive rates and an intuitive mobile banking application.
                 </p>
 
                 <p>
-                    SBI Canada Bank is a Schedule II Canadian Bank listed under the Bank Act and is a member of Canada Deposit Insurance Corporation.
+                    Royal Investment Bank is a Schedule II Canadian Bank listed under the Bank Act and is a member of Canada Deposit Insurance Corporation.
                 </p>
 
                 <p>
-                SBI Canada Bank is overseen by a Board of Directors, made up of 8 members, of which four are Canadian residents.
+                Royal Investment Bank is overseen by a Board of Directors, made up of 8 members, of which four are Canadian residents.
                 </p>
 
                 <p>

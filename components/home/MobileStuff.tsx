@@ -3,7 +3,7 @@ import React from 'react';
 
 function MobileStuff() {
   const imageData = [
-    { src: '/assets/icons/branch.png', label: 'Download the YONO SBICA and apply for Student GIC' },
+    { src: '/assets/icons/branch.png', label: 'Download the YONO RIBC and apply for Student GIC' },
     { src: '/assets/icons/contact.png', label: 'Arrive in Canada & Activate your account' },
     { src: '/assets/icons/moneytransfer.png', label: 'Get your Wire transfer Details' },
     { src: '/assets/icons/phonetransfer.png', label: 'Transfer Money Anywhere' },

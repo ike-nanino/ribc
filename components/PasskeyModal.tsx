@@ -1,122 +1,68 @@
 "use client";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-// import { useRouter } from "next/navigation";
-import {  useState } from "react";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { signIn } from "next-auth/react";
-config.autoAddCss = false;
+import { useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
-interface PasskeyModalProps {
+type Props = {
   username: string;
   password: string;
   onSuccess: () => void;
   onClose: () => void;
-}
+};
 
-function PasskeyModal({ username, password, onSuccess, onClose }: PasskeyModalProps) {
-  // const router = useRouter();
-  const [open, setOpen] = useState(true);
-  const [error, setError] = useState("");
-  const [passkey, setPasskey] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+export default function PasskeyModal({ onSuccess, onClose }: Props) {
+  const [code, setCode] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const supabase = createClient();
 
-  // Function to call our API route for verifying 2FA
-  const validatePasskey = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError("");
+    setError(null);
 
-    try {
-      // Use NextAuth's signIn with 2FA code
-      const result = await signIn("credentials", {
-        redirect: false,
-        username,
-        password,
-        twoFactorCode: passkey,
-      });
-
-      if (result?.error) {
-        setError("Invalid verification code. Please try again.");
-      } else {
-        setOpen(false);
-        onSuccess(); // Trigger success redirect
-      }
-    } catch (err) {
-      setError(`Verification failed. Please try again.${err}`);
-    } finally {
-      setIsLoading(false);
+    const expected = process.env.NEXT_PUBLIC_ADMIN_PASSKEY;
+    if (code === expected) {
+      onSuccess();
+    } else {
+      setError("Invalid verification code.");
     }
   };
 
-  // Remove all localStorage and useEffect logic
-  const closeModal = () => {
-    setOpen(false);
+  // Optional: If they close/cancel, sign them out to avoid leaving an authed session unverified.
+  const handleClose = async () => {
+    await supabase.auth.signOut();
     onClose();
   };
-  
-
-  // Create OTP slots dynamically for a 6-digit code
-  const otpSlots = Array.from({ length: 6 }, (_, i) => (
-    <InputOTPSlot
-      key={i}
-      index={i}
-      className={`text-2xl text-black font-medium justify-center flex border-1 rounded-lg size-12 lg:size-16 lg:text-4xl gap-4 ${
-        i < passkey.length ? "border-green-500" : "border-black"
-      } focus:border-green-500`}
-    />
-  ));
 
   return (
-    <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogContent className="space-y-5 bg-white border-blue-primary outline-none">
-        <AlertDialogHeader>
-          <AlertDialogTitle className="flex items-start justify-between">
-            Enter Verification Code
-            <FontAwesomeIcon
-              icon={faXmark}
-              onClick={closeModal}
-              className="cursor-pointer text-2xl text-red-600"
-            />
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-black">
-            Please enter the 6-digit code
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-
-        <div>
-          <InputOTP maxLength={6} value={passkey} onChange={setPasskey}>
-            <InputOTPGroup className="w-full flex justify-between">{otpSlots}</InputOTPGroup>
-          </InputOTP>
-          {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
-        </div>
-
-        <AlertDialogFooter>
-          <AlertDialogAction
-            onClick={validatePasskey}
-            className={`bg-green-500 hover:bg-green-300 transition text-white cursor-pointer ${
-              isLoading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
-            disabled={isLoading || passkey.length !== 6}
-          >
-            {isLoading ? "Verifying..." : "Verify Code"}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="w-full max-w-sm rounded-md bg-white p-6 shadow-md">
+        <h2 className="mb-4 text-lg font-semibold">Two-Factor Verification</h2>
+        {error && <p className="mb-2 text-sm text-red-600">{error}</p>}
+        <form onSubmit={submit}>
+          <input
+            className="mb-4 w-full rounded-md border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-blue-primary"
+            placeholder="Enter your 6-digit code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            autoFocus
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="flex-1 rounded-md bg-blue-primary py-2 text-white hover:bg-blue-primary/80"
+            >
+              Verify
+            </button>
+            <button
+              type="button"
+              className="flex-1 rounded-md border border-gray-300 py-2 hover:bg-gray-50"
+              onClick={handleClose}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
-
-export default PasskeyModal;

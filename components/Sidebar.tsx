@@ -20,7 +20,7 @@ function Sidebar() {
         >
         <Image 
         src='/assets/images/osbicanada.png'
-        alt='SBILogo'
+        alt='RIBCLogo'
         width={120}
         height={120}
         priority

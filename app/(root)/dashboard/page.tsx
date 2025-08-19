@@ -13,8 +13,8 @@ function Profile() {
                 <HeaderBox 
                     type='greeting'
                     title='Welcome'
-                    user='Justice Plange'
-                    subtext='7894 Canterbury St. Rogersville, NB E4Y 9J7'
+                    user='William A. Thompson'
+                    subtext='5501 W. Washington St. Apt #134 Groves TX 77619'
                 />
 
                 <TotalBalanceBox

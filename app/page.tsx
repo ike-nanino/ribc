@@ -62,7 +62,7 @@ export default function HomePage() {
           )}
         </div>
         <div className="flex justify-between pb-6 flex-col lg:flex-row px-6">
-          <p>© Copy Rights Reserved 2018 SBI Canada Bank (APM Id : FQ_Info_2065)</p>
+          <p>© Copy Rights Reserved 2018 Royal Investment Bank (APM Id : FQ_Info_2065)</p>
           <p>Website best viewed in 103bps and above</p>
 
 
