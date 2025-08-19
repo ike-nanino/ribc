@@ -3,7 +3,6 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-
 interface UserCredentials {
   username: string;
   password: string;
@@ -27,22 +26,34 @@ export const authOptions: NextAuthOptions = {
         twoFactorCode: { label: "2FA Code", type: "text" },
       },
       authorize: async (credentials) => {
-        const { username, password, twoFactorCode } = credentials as UserCredentials;
+        const { username, password, twoFactorCode } =
+          credentials as UserCredentials;
 
         // Initial credential check
-        if (username === "Leandersb" && password === "jollylove18") {
-          // If 2FA code provided
+        if (
+          username === process.env.NEXT_PUBLIC_ADMIN_USERNAME &&
+          password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD
+        ) {
           if (twoFactorCode) {
-            const isValid = twoFactorCode === process.env.NEXT_PUBLIC_ADMIN_PASSKEY;
-            
-            return isValid 
-              ? { id: "user1", name: "User", email: "", requiresTwoFactor: false }
+            const isValid =
+              twoFactorCode === process.env.NEXT_PUBLIC_ADMIN_PASSKEY;
+            return isValid
+              ? {
+                  id: "user1",
+                  name: "User",
+                  email: "",
+                  requiresTwoFactor: false,
+                }
               : null;
           }
-          
-          // Require 2FA if no code provided
-          return { id: "user1", name: "User", email: "", requiresTwoFactor: true };
+          return {
+            id: "user1",
+            name: "User",
+            email: "",
+            requiresTwoFactor: true,
+          };
         }
+
         return null;
       },
     }),
@@ -75,7 +86,7 @@ export const authOptions: NextAuthOptions = {
         session.expires = new Date(token.exp * 1000).toISOString();
       }
       return session;
-    }
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
