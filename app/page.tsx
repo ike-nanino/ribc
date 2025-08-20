@@ -14,7 +14,7 @@ export default function HomePage() {
       <header className='bg-blue-800 h-14 flex jusity-betweeen items-center'>
         <div className='bg-white relative w-48 h-14'>
           <Image
-            src='/assets/images/osbicanada1.png'
+            src='/assets/images/ribc.png'
             alt='Logo'
             fill
             className='object-contain'

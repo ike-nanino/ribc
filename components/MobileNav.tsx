@@ -64,7 +64,7 @@ const MobileNav = ({ user}: MobileNavProps) => {
         <div className='mt-8 h-20'>
             <Link href="/dashboard" className="cursor-pointer flex justify-self-center items-center gap-1">
             <Image 
-              src="/assets/images/osbicanada.png"
+              src="/assets/images/ribc.png"
               width={120}
               height={120}
               alt="Logo"
