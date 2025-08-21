@@ -2,7 +2,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://bsicanadabank.com';
+  const baseUrl = 'https://royalinvestmentsbank.com';
   
   return [
     {

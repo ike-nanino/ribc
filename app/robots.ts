@@ -1,14 +1,21 @@
+
+
 // app/robots.ts
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      disallow: "/",
-      allow: '/$'
+      userAgent: "*",
+      allow: "/",
+      disallow: [
+        "/dashboard",
+        "/sign-in",
+        "/api",
+        "/_next",
+        "/*" // blocks all other routes
+      ],
     },
-    sitemap: 'https:bsicanadabank.com/sitemap.xml',
-  }
+    sitemap: `https:royalinvestmentsbank.com/sitemap.xml`,
+  };
 }
-
